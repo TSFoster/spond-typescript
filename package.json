@@ -1,0 +1,30 @@
+{
+  "name": "spond",
+  "version": "0.1.0",
+  "description": "TypeScript client for the Spond API",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "typecheck:examples": "tsc --project tsconfig.examples.json"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "typescript": "^5.4.0"
+  },
+  "license": "MIT"
+}
