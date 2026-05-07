@@ -310,6 +310,10 @@ export interface CreateEventRequest {
   };
 }
 
+export interface ChangeResponseOptions {
+  skipPayment?: boolean;
+}
+
 // ---------------------------------------------------------------------------
 // Posts
 // ---------------------------------------------------------------------------

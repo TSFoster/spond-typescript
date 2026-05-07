@@ -2,6 +2,7 @@ import { SpondBase, type RequestOptions } from "./base.js";
 import { SpondAuthError, SpondApiError } from "./errors.js";
 import type {
   ChatMessage,
+  ChangeResponseOptions,
   ClockResponse,
   CreateEventRequest,
   CreateGroupRequest,
@@ -190,16 +191,21 @@ export class Spond extends SpondBase {
    * Change the RSVP response for a specific user on an event.
    *
    * @param eventId - The event ID.
-   * @param userId  - The user/member ID whose response to change.
+   * @param userId - The user/member ID whose response to change.
    * @param payload - The response payload (e.g. `{ accepted: true }`).
+   * @param options - Optional request flags.
    */
   async changeResponse(
     eventId: string,
     userId: string,
     payload: Record<string, unknown>,
+    options: ChangeResponseOptions = {},
   ): Promise<unknown> {
     return this.request("PUT", `sponds/${eventId}/responses/${userId}`, {
       body: payload,
+      headers: options.skipPayment
+        ? { "X-Spond-SkipPayment": "true" }
+        : undefined,
     });
   }
 

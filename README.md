@@ -62,7 +62,7 @@ const spond = new Spond({ username, password });
 | `updateEvent(eventId, updates)` | `Event` | Partially update an event |
 | `acceptEvent(eventId)` | `void` | Accept an event invitation |
 | `declineEvent(eventId)` | `void` | Decline an event invitation |
-| `changeResponse(eventId, userId, payload)` | `unknown` | Change a user's RSVP |
+| `changeResponse(eventId, userId, payload, options?)` | `unknown` | Change a user's RSVP |
 | `getEventAttendanceXlsx(eventId)` | `ArrayBuffer` | Download attendance XLSX |
 
 `getEvents` accepts an options object:
@@ -76,6 +76,17 @@ await spond.getEvents({
   minStart: new Date("2025-01-01"),
   maxEnd: new Date("2025-12-31"),
 });
+```
+
+`changeResponse` accepts an optional fourth argument:
+
+```ts
+await spond.changeResponse(
+  "event-id",
+  "user-id",
+  { accepted: true },
+  { skipPayment: true },
+);
 ```
 
 #### Posts

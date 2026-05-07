@@ -40,6 +40,7 @@ export type {
   EventOwner,
   EventResponses,
   CreateEventRequest,
+  ChangeResponseOptions,
   Location,
   Task,
   Attachment,
