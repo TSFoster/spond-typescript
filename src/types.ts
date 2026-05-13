@@ -7,9 +7,15 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface AuthToken {
+  token: string;
+  expiration: string;
+}
+
 export interface LoginResponse {
-  loginToken: string;
-  passwordToken: string;
+  accessToken: AuthToken;
+  refreshToken?: AuthToken;
+  passwordToken: AuthToken;
 }
 
 export interface CreateAccountRequest {

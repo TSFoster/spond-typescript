@@ -40,11 +40,11 @@ export abstract class SpondBase {
    * Called automatically before the first authenticated request.
    */
   async login(): Promise<void> {
-    const url = "https://api.spond.com/core/v1/login";
+    const url = "https://api.spond.com/core/v1/auth2/login";
 
     const res = await fetch(url, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: this.username, password: this.password }),
     });
 
@@ -56,14 +56,15 @@ export abstract class SpondBase {
     }
 
     const data = (await res.json()) as LoginResponse;
+    const accessToken = data.accessToken?.token;
 
-    if (!data.loginToken) {
+    if (!accessToken) {
       throw new SpondAuthError(
-        "Login response did not contain a loginToken — check your credentials",
+        "Login response did not contain an accessToken — check your credentials",
       );
     }
 
-    this.token = data.loginToken;
+    this.token = accessToken;
   }
 
   // ---------------------------------------------------------------------------
